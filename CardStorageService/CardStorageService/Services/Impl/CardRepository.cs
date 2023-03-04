@@ -54,12 +54,12 @@ namespace CardStorageService.Services.Impl
 
         public int Delete(Card item)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public IList<Card> GetAll()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
 
@@ -95,12 +95,12 @@ namespace CardStorageService.Services.Impl
 
         public IList<Card> GetById(string id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public int Update(Card item)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

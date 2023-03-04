@@ -4,6 +4,7 @@ using CardStorageService.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CardStorageService.Data.Migrations
 {
     [DbContext(typeof(CardStorageServiceDbContext))]
-    partial class CardStorageServiceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230304130915_Accounts")]
+    partial class Accounts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,7 +139,7 @@ namespace CardStorageService.Data.Migrations
             modelBuilder.Entity("CardStorageService.Data.Models.AccountSession", b =>
                 {
                     b.HasOne("CardStorageService.Data.Models.Account", "Account")
-                        .WithMany("Sessions")
+                        .WithMany()
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -153,11 +156,6 @@ namespace CardStorageService.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("CardStorageService.Data.Models.Account", b =>
-                {
-                    b.Navigation("Sessions");
                 });
 
             modelBuilder.Entity("CardStorageService.Data.Models.Client", b =>

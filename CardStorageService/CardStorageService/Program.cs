@@ -62,6 +62,7 @@ namespace CardStorageService
 
             #region Configure Repository
 
+            builder.Services.AddScoped<IAuthenticateRepository, AuthenticateRepository>();
             builder.Services.AddScoped<ICardRepository, CardRepository>();
             builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
@@ -69,6 +70,8 @@ namespace CardStorageService
 
             #region Configure Mapping
 
+            builder.Services.AddAutoMapper(typeof(AccountMappingProfile));
+            builder.Services.AddAutoMapper(typeof(AccountSessionMappingProfile));
             builder.Services.AddAutoMapper(typeof(CardMappingProfile));
             builder.Services.AddAutoMapper(typeof(ClientMappingProfile));
 
