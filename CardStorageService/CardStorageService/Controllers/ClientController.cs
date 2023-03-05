@@ -3,6 +3,7 @@ using CardStorageService.Data.Models;
 using CardStorageService.Models.Requests;
 using CardStorageService.Models.Responses;
 using CardStorageService.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -10,19 +11,20 @@ using System;
 
 namespace CardStorageService.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ClientController : ControllerBase
     {
         private readonly ILogger<ClientController> _logger;
         private readonly IMapper _mapper;
-        private readonly IClientRepository _repository;
+        private readonly IClientService _service;
 
-        public ClientController(ILogger<ClientController> logger, IMapper mapper, IClientRepository repository)
+        public ClientController(ILogger<ClientController> logger, IMapper mapper, IClientService service)
         {
             _logger = logger;
             _mapper = mapper;
-            _repository = repository;
+            _service = service;
         }
 
         [HttpPost("create")]
@@ -34,7 +36,7 @@ namespace CardStorageService.Controllers
 
             try
             {
-                var clientId = _repository.Create(_mapper.Map<Client>(request));
+                var clientId = _service.Create(_mapper.Map<Client>(request));
                 return Ok(new CreateClientResponse(clientId));
             }
             catch (Exception ex)

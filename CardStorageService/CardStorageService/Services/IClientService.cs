@@ -2,7 +2,7 @@
 
 namespace CardStorageService.Services
 {
-    public interface IClientRepository : IRepository<Client, int>
+    public interface IClientService : ICardStorageService<Client, int>
     {
     }
 }

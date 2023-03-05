@@ -6,12 +6,12 @@ using System.Collections.Generic;
 
 namespace CardStorageService.Services.Impl
 {
-    public class ClientRepository : IClientRepository
+    public class ClientService : IClientService
     {
         private readonly CardStorageServiceDbContext _context;
-        private readonly ILogger<ClientRepository> _logger;
+        private readonly ILogger<ClientService> _logger;
 
-        public ClientRepository(ILogger<ClientRepository> logger, CardStorageServiceDbContext context)
+        public ClientService(ILogger<ClientService> logger, CardStorageServiceDbContext context)
         {
             _logger = logger;
             _context = context;

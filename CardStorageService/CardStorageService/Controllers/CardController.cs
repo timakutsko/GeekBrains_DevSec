@@ -4,6 +4,7 @@ using CardStorageService.Models.DTO;
 using CardStorageService.Models.Requests;
 using CardStorageService.Models.Responses;
 using CardStorageService.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,19 +13,20 @@ using System.Linq;
 
 namespace CardStorageService.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CardController : ControllerBase
     {
         private readonly ILogger<CardController> _logger;
         private readonly IMapper _mapper;
-        private readonly ICardRepository _repository;
+        private readonly ICardService _service;
 
-        public CardController(ILogger<CardController> logger, IMapper mapper, ICardRepository repository)
+        public CardController(ILogger<CardController> logger, IMapper mapper, ICardService service)
         {
             _logger = logger;
             _mapper = mapper;
-            _repository = repository;
+            _service = service;
         }
         
         [HttpPost("create")]
@@ -39,7 +41,7 @@ namespace CardStorageService.Controllers
 
             try
             {
-                var cardId = _repository.Create(_mapper.Map<Card>(request));
+                var cardId = _service.Create(_mapper.Map<Card>(request));
                 return Ok(new CreateCardResponse(cardId));
             }
             catch (Exception ex)
@@ -57,7 +59,7 @@ namespace CardStorageService.Controllers
 
             try
             {
-                var cards = _repository.GetByClientId(clientId);
+                var cards = _service.GetByClientId(clientId);
                 return Ok(new GetCardResponse()
                 {
                     Cards = cards.Select(c => _mapper.Map<CardDTO>(c)).ToList()

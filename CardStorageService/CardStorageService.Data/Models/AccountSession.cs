@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CardStorageService.Data.Models
 {
+    [Table("AccountSessions")]
     public class AccountSession
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,6 +16,8 @@ namespace CardStorageService.Data.Models
 
         [ForeignKey(nameof(Account))]
         public int AccountId { get; set; }
+
+        public bool IsClosed { get; set; }
 
         public virtual Account Account { get; set; }
     }

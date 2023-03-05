@@ -4,11 +4,6 @@ namespace CardStorageService.Models.Responses
 {
     public class AuthenticationResponse : IOperationResult
     {
-        // Заглушка для создания первого юзера
-        public AuthenticationResponse()
-        {
-        }
-
         public AuthenticationResponse(AccountSessionDTO session)
         {
             Session = session;

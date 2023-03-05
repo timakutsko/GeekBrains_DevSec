@@ -5,8 +5,10 @@ using CardStorageService.Models.Responses;
 
 namespace CardStorageService.Services
 {
-    public interface IAuthenticateRepository
+    public interface IAuthenticateService
     {
+        CreateAccountResponse Create(CreateAccountRequest createAccountRequest);
+
         AuthenticationResponse Login(AuthenticationRequest authenticationRequest);
 
         public AccountSessionDTO GetSession(string sessionToken);
