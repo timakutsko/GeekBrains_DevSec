@@ -2,7 +2,7 @@
 
 namespace CardStorageService.Services
 {
-    public interface IRepository<T, TId>
+    public interface ICardStorageService<T, TId>
     {
         IList<T> GetAll();
 

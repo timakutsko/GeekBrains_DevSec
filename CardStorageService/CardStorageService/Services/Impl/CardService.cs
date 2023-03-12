@@ -10,13 +10,13 @@ using System.Linq;
 
 namespace CardStorageService.Services.Impl
 {
-    public class CardRepository : ICardRepository
+    public class CardService : ICardService
     {
         private readonly CardStorageServiceDbContext _context;
-        private readonly ILogger<CardRepository> _logger;
+        private readonly ILogger<CardService> _logger;
         private readonly IOptions<DataBaseOptions> _options;
 
-        public CardRepository(ILogger<CardRepository> logger, CardStorageServiceDbContext context, IOptions<DataBaseOptions> options)
+        public CardService(ILogger<CardService> logger, CardStorageServiceDbContext context, IOptions<DataBaseOptions> options)
         {
             _logger = logger;
             _context = context;

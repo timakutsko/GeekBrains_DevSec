@@ -24,6 +24,7 @@ namespace CardStorageService.Utils
 
         public static bool PasswordVerify(string password, string passwordSalt, string passwordHash)
         {
+            var a = GetPasswordHash(password, passwordSalt);
             return GetPasswordHash(password, passwordSalt) == passwordHash;
         }
 
