@@ -93,9 +93,9 @@ namespace CardStorageService.Services.Impl
         }
         #endregion
 
-        public IList<Card> GetById(string id)
+        public Card GetById(string id)
         {
-            throw new NotImplementedException();
+            return _context.Cards.SingleOrDefault(c => c.Id == new Guid(id));
         }
 
         public int Update(Card item)

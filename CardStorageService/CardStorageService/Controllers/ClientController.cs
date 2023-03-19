@@ -42,7 +42,7 @@ namespace CardStorageService.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Create client error.");
-                return Ok(new CreateCardResponse(912, "Create client error."));
+                return Ok(new CreateClientResponse(912, "Create client error."));
             }
         }
     }
