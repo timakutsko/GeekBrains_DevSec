@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardStorageService", "CardS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardStorageService.Data", "CardStorageService.Data\CardStorageService.Data.csproj", "{9C523D30-4646-4E08-A1CE-D2DC45C76B75}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardStorageClient", "CardStorageClient\CardStorageClient.csproj", "{E717F5AA-2861-4622-A857-A6167EDEF895}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9C523D30-4646-4E08-A1CE-D2DC45C76B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C523D30-4646-4E08-A1CE-D2DC45C76B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C523D30-4646-4E08-A1CE-D2DC45C76B75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E717F5AA-2861-4622-A857-A6167EDEF895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E717F5AA-2861-4622-A857-A6167EDEF895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E717F5AA-2861-4622-A857-A6167EDEF895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E717F5AA-2861-4622-A857-A6167EDEF895}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,7 +6,7 @@ namespace CardStorageService.Services
     {
         IList<T> GetAll();
 
-        IList<T> GetById(TId id);
+        T GetById(TId id);
 
         TId Create(T item);
 

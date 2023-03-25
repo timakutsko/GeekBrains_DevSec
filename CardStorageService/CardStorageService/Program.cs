@@ -20,11 +20,26 @@ using System.Text;
 
 namespace CardStorageService
 {
-    public class Program
+    internal class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            #region Configure GRPC
+
+            builder.Services.AddGrpc();
+            builder.WebHost.ConfigureKestrel(opt =>
+            {
+                opt.Listen(System.Net.IPAddress.Any, 5001, listenOptions =>
+                {
+                    listenOptions.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2;
+                    listenOptions.UseHttps(@"D:\MyStudy\GeekBrains_DevSec\cert.pfx", "12345");
+                });
+            });
+                
+
+            #endregion
 
             #region Configure Options
 
@@ -148,10 +163,20 @@ namespace CardStorageService
             
             app.UseAuthentication();
             app.UseAuthorization();
-            
-            app.UseHttpLogging();
+
+            app.UseWhen(
+                ctx => ctx.Request.ContentType != "application/grpc",
+                builder =>
+                {
+                    builder.UseHttpLogging();
+                });
 
             app.MapControllers();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapGrpcService<GRPC_ClientService>();
+            });
 
             app.Run();
         }

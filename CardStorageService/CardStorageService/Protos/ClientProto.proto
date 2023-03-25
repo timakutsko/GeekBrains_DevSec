@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option csharp_namespace = "ClientServiceProtos";
+
+package ClientServiceProtos;
+
+service ClientService {
+	rpc Create (CreateClientRequest) returns (CreateClientResponse);
+	rpc GetById (GetByIdRequest) returns (GetByIdResponse);
+}
+
+message CreateClientRequest{
+	string Surname = 1;
+    string FirstName = 2;
+}
+
+message CreateClientResponse{
+    int32 ClientId = 1;
+	int32 ErrorCode = 2;
+    string ErrorMessage = 3;
+}
+
+message GetByIdRequest{
+	int32 Id = 1;
+}
+
+message GetByIdResponse{
+	Client client = 1;
+	int32 ErrorCode = 2;
+    string ErrorMessage = 3;
+}
+
+message Client{
+    int32 Id = 1;
+    string FirstName = 2;
+    string Surname = 3;
+}

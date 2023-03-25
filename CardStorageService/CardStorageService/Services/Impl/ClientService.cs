@@ -3,6 +3,7 @@ using CardStorageService.Data.Models;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CardStorageService.Services.Impl
 {
@@ -46,9 +47,19 @@ namespace CardStorageService.Services.Impl
             throw new System.NotImplementedException();
         }
 
-        public IList<Client> GetById(int id)
+        public Client GetById(int id)
         {
-            throw new System.NotImplementedException();
+            _logger.LogInformation($"Вызов метода GetById с параметрами:" +
+                $"\nId: {id}");
+
+            Client client = _context.Clients.SingleOrDefault(c => c.Id == id);
+            if (client == null)
+            {
+                _logger.LogError("Client is not found.");
+                throw new Exception("DB: Client is not found.");
+            }
+            else
+                return client;
         }
 
         public int Update(Client item)
